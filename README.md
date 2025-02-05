@@ -122,22 +122,64 @@ composer update
 packages/
     amirhoss/
         hello_world/
-        src/
-            Http/
-                Controllers/
-                    HelloWorldController.php
-            Models/
+            config/
+                hello_world.php
+            database/
+                migrations/
+                    create_hello_world_table.php
+                seeders/
+            resources/
+                views/
+                    hello_world.blade.php
+            src/
+                Helper/
+                    helpers.php
+                Http/
+                    Controllers/
+                        HelloWorldController.php
+                    Routes/
+                        web.php
+                Models/
+                    HelloWorld.php
+                Traits/
             HelloWorldServiceProvider.php
-        config/
-            hello_world.php
-        database/
-            migrations/
-                create_hello_world_table.php
-            seeders/
-        resources/
-            views/
-                hello_world.blade.php
-        tests/
-        composer.json
+            composer.json
+```
+
+## Step 1: Create Package Config
+
+```bash
+mkdir -p config
+touch config/hello_world.php
+```
+
+```php
+<?php
+
+return [
+    'path' => 'hello',
+    'middleware' => ['web'],
+];
+```
+
+## Step 2: Create Package Routes
+
+```bash
+mkdir -p src/Http/Routes
+touch src/Http/Routes/web.php
+```
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::prefix(config('hello_world.path'))
+    ->middleware(config('hello_world.middleware'))
+    ->group(function () {
+        Route::get('/', function () {
+            return 'Hello World';
+        });
+    });
 ```
 
