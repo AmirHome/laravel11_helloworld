@@ -13,6 +13,9 @@
 
 ```bash
 composer create-project laravel/laravel laravel11
+cd laravel11
+composer install
+php artisan serve
 ```
 
 ## Step 2: Initialize a new package
