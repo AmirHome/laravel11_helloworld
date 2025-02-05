@@ -4,8 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "626b9e7ddd47fb7eff9aaa53cce0c9ad",
+    "content-hash": "7873a0b70169813dd624d69802d7de7d",
     "packages": [
+        {
+            "name": "amirhoss/hello_world",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/amirhoss/hello_world",
+                "reference": "f8f0081dc681d64cd9b0be59a036a3b2ec288bc4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Amirhoss\\HelloWorld\\HelloWorldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amirhoss\\HelloWorld\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "AmirHome",
+                    "email": "amir.email@yahoo.com"
+                }
+            ],
+            "description": "My own laravel package",
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -8078,7 +8110,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "amirhoss/hello_world": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

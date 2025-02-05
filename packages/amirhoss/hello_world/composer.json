@@ -1,0 +1,23 @@
+{
+    "name": "amirhoss/hello_world",
+    "description": "My own laravel package",
+    "autoload": {
+        "psr-4": {
+            "Amirhoss\\HelloWorld\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AmirHome",
+            "email": "amir.email@yahoo.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Amirhoss\\HelloWorld\\HelloWorldServiceProvider"
+            ]
+        }
+    }
+}
