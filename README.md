@@ -162,6 +162,12 @@ return [
 ];
 ```
 
+### Run the following command to publish the config
+
+```bash
+php artisan vendor:publish --provider="Amirhoss\HelloWorld\HelloWorldServiceProvider"
+```
+
 ## Step 2: Create Package Routes
 
 ```bash
@@ -182,4 +188,5 @@ Route::prefix(config('hello_world.path'))
         });
     });
 ```
+
 
