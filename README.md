@@ -19,11 +19,11 @@ php artisan serve
 ```
 
 ## Step 2: Initialize a new package
-the amirhoss is namespace(typically your GitHub username or company name) and hello_world is package name
+the amirhome is namespace(typically your GitHub username or company name) and hello_world is package name
 
 ```bash
-mkdir -p packages/amirhoss/hello_world
-cd packages/amirhoss/hello_world
+mkdir -p packages/amirhome/hello_world
+cd packages/amirhome/hello_world
 composer init
 
 ```
@@ -37,7 +37,7 @@ touch src/HelloWorldServiceProvider.php
 
 ```php
 <?php
-    namespace Amirhoss\HelloWorld;
+    namespace amirhome\HelloWorld;
 
     use Illuminate\Support\ServiceProvider;
 
@@ -57,20 +57,20 @@ touch src/HelloWorldServiceProvider.php
 
 ## Step 4: Autoloading
 
-### Read and check the laravel11/packages/amirhoss/hello_world/composer.json file
+### Read and check the laravel11/packages/amirhome/hello_world/composer.json file
 
 ```json
 {
-    "name": "amirhoss/hello_world",
+    "name": "amirhome/hello_world",
     "description": "My own laravel package",
     "autoload": {
         "psr-4": {
-            "Amirhoss\\HelloWorld\\": "src/"
+            "amirhome\\HelloWorld\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "AmirHome",
+            "name": "amirhome",
             "email": "amir.email@yahoo.com"
         }
     ],
@@ -78,7 +78,7 @@ touch src/HelloWorldServiceProvider.php
     "extra": {
         "laravel": {
             "providers": [
-                "Amirhoss\\HelloWorld\\HelloWorldServiceProvider"
+                "amirhome\\HelloWorld\\HelloWorldServiceProvider"
             ]
         }
     }
@@ -97,12 +97,12 @@ composer dump-autoload
 
 ```json
 "require": {
-    "amirhoss/hello_world": "@dev"
+    "amirhome/hello_world": "@dev"
 },
 "repositories": [
     {
         "type": "path",
-        "url": "packages/amirhoss/hello_world"
+        "url": "packages/amirhome/hello_world"
     }
 ]
 ```
@@ -123,7 +123,7 @@ composer update
 
 ```bash
 packages/
-    amirhoss/
+    amirhome/
         hello_world/
             config/
                 hello_world.php
@@ -168,7 +168,7 @@ return [
 ### Run the following command to publish the config
 
 ```bash
-php artisan vendor:publish --provider="Amirhoss\HelloWorld\HelloWorldServiceProvider"
+php artisan vendor:publish --provider="amirhome\HelloWorld\HelloWorldServiceProvider"
 ```
 
 ## Step 2: Create Package Routes

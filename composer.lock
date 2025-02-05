@@ -4,32 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7873a0b70169813dd624d69802d7de7d",
+    "content-hash": "115cca7576cfeeb9741edd92827c184a",
     "packages": [
         {
-            "name": "amirhoss/hello_world",
+            "name": "amirhome/hello_world",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "packages/amirhoss/hello_world",
-                "reference": "f8f0081dc681d64cd9b0be59a036a3b2ec288bc4"
+                "url": "packages/amirhome/hello_world",
+                "reference": "4574330b82c71bf090b08b4c94e908c0454288bb"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Amirhoss\\HelloWorld\\HelloWorldServiceProvider"
+                        "amirhome\\HelloWorld\\HelloWorldServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Amirhoss\\HelloWorld\\": "src/"
+                    "amirhome\\HelloWorld\\": "src/"
                 }
             },
             "authors": [
                 {
-                    "name": "AmirHome",
+                    "name": "amirhome",
                     "email": "amir.email@yahoo.com"
                 }
             ],
@@ -8111,7 +8111,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "amirhoss/hello_world": 20
+        "amirhome/hello_world": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

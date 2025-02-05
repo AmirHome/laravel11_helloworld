@@ -9,7 +9,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
-        "amirhoss/hello_world": "@dev"
+        "amirhome/hello_world": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -70,7 +70,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "packages/amirhoss/hello_world"
+            "url": "packages/amirhome/hello_world"
         }
     ],
     "minimum-stability": "stable",
