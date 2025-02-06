@@ -88,6 +88,7 @@ touch src/HelloWorldServiceProvider.php
 ### Run the following command to autoload the package
 
 ```bash
+cd packages/amirhome/hello_world
 composer dump-autoload
 ```
 
@@ -110,12 +111,7 @@ composer dump-autoload
 ### Run the following command to install the package
 
 ```bash
-composer update
-```
-
-### Run the following command to install the package
-
-```bash
+cd laravel11
 composer update
 ```
 
@@ -165,12 +161,6 @@ return [
 ];
 ```
 
-### Run the following command to publish the config
-
-```bash
-php artisan vendor:publish --provider="amirhome\HelloWorld\HelloWorldServiceProvider"
-```
-
 ## Step 2: Create Package Routes
 
 ```bash
@@ -178,18 +168,168 @@ mkdir -p src/Http/Routes
 touch src/Http/Routes/web.php
 ```
 
+### Create Routes
+```php
+
+
+```
+
+## Controller Implementation
+
+```bash
+touch src/Http/Controllers/HelloWorldController.php
+```
+
+### Create Controller with index blade view
+```php
+<?php
+
+namespace amirhome\HelloWorld\Http\Controllers;
+
+use amirhome\HelloWorld\Models\HelloWorld;
+use Illuminate\Contracts\View\View;
+
+class HelloWorldController
+{
+    public function index(): View
+    {
+        $message = HelloWorld::first()->message ?? 'Hello World';
+        
+        return view('hello_world::index', compact('message'));
+    }
+}
+```
+### Create Blade View
+```html
+<!-- packages/amirhome/hello_world/resources/views/index.blade.php -->
+<div>
+    <h1>{{ $message }}</h1>
+    <p>Package working successfully!</p>
+</div> 
+
+```
+
+## Model with Migration
+
+```bash
+mkdir -p database/migrations
+touch src/Models/HelloWorld.php
+touch database/migrations/2024_01_01_000000_create_hello_world_table.php
+```
+
+### Create Model
+```php
+<?php
+
+namespace amirhome\HelloWorld\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class HelloWorld extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['message'];
+}
+```
+
+### Create Migration
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('hello_worlds', function (Blueprint $table) {
+            $table->id();
+            $table->string('message');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('hello_worlds');
+    }
+};
+```
+
+### Update Routes File
+
 ```php
 <?php
 
 use Illuminate\Support\Facades\Route;
+use amirhome\HelloWorld\Http\Controllers\HelloWorldController;
 
 Route::prefix(config('hello_world.path'))
     ->middleware(config('hello_world.middleware'))
     ->group(function () {
-        Route::get('/', function () {
-            return 'Hello World';
-        });
+        Route::get('/', [HelloWorldController::class, 'index']);
     });
 ```
+
+### Update Service Provider
+
+```php
+class HelloWorldServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/hello_world.php' => config_path('hello_world.php'),
+        ], 'hello_world_config');
+
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'hello_world_migrations');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/hello_world'),
+        ], 'hello_world_views');
+    }
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/hello_world.php', 'hello_world');
+        $this->loadRoutesFrom(__DIR__ . '/Http/Routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'hello_world');
+
+    }
+}
+```
+### Run the following command to publish the config
+
+```bash
+php artisan vendor:publish --provider="amirhome\HelloWorld\HelloWorldServiceProvider"
+```
+
+## Install Package on Production
+
+```bash
+cd laravel11
+composer update
+php artisan vendor:publish --provider="amirhome\HelloWorld\HelloWorldServiceProvider"
+php artisan migrate
+
+php artisan serve
+
+```
+
+## Github Package link
+https://github.com/AmirHome/hello_world
+
+## Github example link
+https://github.com/AmirHome/laravel11_helloworld
+
+
+
+
+
 
 

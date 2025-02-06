@@ -12,7 +12,11 @@
             "dist": {
                 "type": "path",
                 "url": "packages/amirhome/hello_world",
-                "reference": "4574330b82c71bf090b08b4c94e908c0454288bb"
+                "reference": "c79518e3b4fbf60459566086a35df6a744da8ee1"
+            },
+            "require": {
+                "laravel/framework": "^10.0 || ^11.0",
+                "php": "^8.1"
             },
             "type": "library",
             "extra": {
@@ -27,6 +31,14 @@
                     "amirhome\\HelloWorld\\": "src/"
                 }
             },
+            "autoload-dev": {
+                "psr-4": {
+                    "amirhome\\HelloWorld\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "amirhome",
@@ -34,6 +46,11 @@
                 }
             ],
             "description": "My own laravel package",
+            "homepage": "https://github.com/amirhome/hello_world",
+            "support": {
+                "issues": "https://github.com/amirhome/hello_world/issues",
+                "source": "https://github.com/amirhome/hello_world"
+            },
             "transport-options": {
                 "relative": true
             }
